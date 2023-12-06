@@ -1,7 +1,6 @@
 :root {
     --heading-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -100,7 +99,7 @@ main {
 .overview {
     position: relative;
     display: flex;
-    height: 80%;
+    height: auto;
     overflow: auto;
     flex-direction: column;
     padding: 0px 20px;
@@ -144,6 +143,8 @@ img {
     align-items: center;
     margin-top: 3%;
     padding: 10px;
+    bottom: 0;
+    background: #ddd;
 }
 
 .main-buttons button {
@@ -234,13 +235,16 @@ img {
 .rating.bad {
     background: red;
 }
+
 .total-stats {
     position: relative;
-    border: 1px solid brown;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     color: gray;
+}
+.total-stats span {
+    color: black;
 }
 @media only screen and (max-width: 767px) {
     .total-stats {
@@ -250,8 +254,4 @@ img {
         width: 200px;
         height: 200px;
     }
-}
-
-.total-stats span {
-    color: black;
 }
