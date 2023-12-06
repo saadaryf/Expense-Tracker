@@ -1,0 +1,257 @@
+:root {
+    --heading-font: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+    background: #ddd;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+@media only screen and (max-width: 950px) and (orientation: landscape) {
+    body {
+        height: auto;
+        overflow-y: scroll;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    body {
+        font-size: 15px;
+    }
+}
+
+header {
+    position: relative;
+    height: 20vh;
+    min-height: 150px;
+    background: #41720c;
+    display: grid;
+    grid-template-rows: 70% 30%;
+    color: #fff;
+}
+
+.cash {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+}
+
+.cash div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header-buttons button {
+    width: 100px;
+    padding: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+}
+
+.header-buttons button.active {
+    background: #fff;
+    color: #41720c;
+    font-size: 0.6em;
+}
+
+.date {
+    position: relative;
+    height: 7vh;
+    min-height: 50px;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    position: relative;
+    height: calc(100vh - (20vh + 7vh));
+    box-sizing: border-box;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.list,
+.overview {
+    position: relative;
+    display: flex;
+    height: 80%;
+    overflow: auto;
+    flex-direction: column;
+    padding: 0px 20px;
+}
+
+.list .list-item:first-child {
+    margin-top: 20px;
+}
+
+img {
+    width: 30px;
+}
+.list-item {
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto 1fr;
+    border-bottom: 1px solid #aaa;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.list-item.cash-in p:last-child {
+    color: #4CAF50;
+}
+
+.list-item.cash-out p:last-child {
+    color: #cd3333;
+}
+
+.list-item p {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.main-buttons {
+    position: sticky;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 3%;
+    padding: 10px;
+}
+
+.main-buttons button {
+    border-radius: 30px;
+    width: 150px;
+    height: 50px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+@media only screen and (max-width: 767px) {
+    .main-buttons button {
+        width: 100px;
+        height: 30px;
+    }
+}
+
+.main-buttons button:first-child {
+    background: #4CAF50;
+
+    &:hover {
+        background: #41720c;
+    }
+}
+
+.main-buttons button:last-child {
+    background: #f02323;
+
+    &:hover {
+        background: #cd3333;
+    }
+}
+.overview {
+    position: relative;
+    min-height: 90%;
+    height: auto;
+    display: grid;
+    grid-template-rows: 90% 10%;
+}
+/* Rating circle */
+.rating {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    font-size: 2em;
+    line-height: 1;
+    margin: auto;
+}
+.rating span {
+    position: relative;
+    display: flex;
+    font-weight: bold;
+    z-index: 2;
+}
+.rating span small {
+    font-size: 0.5em;
+    font-weight: 900;
+    align-self: center;
+}
+.rating::after {
+    content: "";
+    position: absolute;
+    inset: 1rem;
+    background: #fff;
+    border-radius: inherit;
+    z-index: 1;
+}
+.rating::before {
+    content: "";
+    position: absolute;
+    inset: 1rem;
+    border-radius: inherit;
+    box-shadow: 0 0 0 1rem #c7e1f3;
+    z-index: -1;
+}
+.rating.good {
+    background: green;
+}
+.rating.meh {
+    background: yellow;
+}
+.rating.bad {
+    background: red;
+}
+.total-stats {
+    position: relative;
+    border: 1px solid brown;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: gray;
+}
+@media only screen and (max-width: 767px) {
+    .total-stats {
+        flex-direction: column;
+    }
+    .rating{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.total-stats span {
+    color: black;
+}
