@@ -4,9 +4,16 @@ const overviewButton = document.getElementById('overview-button');
 const listDiv = document.querySelector('.list');
 const overviewDiv = document.querySelector('.overview');
 const mainButtons = document.querySelector('.main-buttons');
+const cashInButton = document.getElementById('cash-in-button');
+const cashOutButton = document.getElementById('cash-out-button');
+const rating = document.querySelector(".rating");
+
 
 listButton.addEventListener('click',showList);
 overviewButton.addEventListener('click', showOverview);
+cashInButton.addEventListener('click',setCashInToLocalStorage);
+cashOutButton.addEventListener('click',setCashOutToLocalStorage);
+document.addEventListener('DOMContentLoaded', setRating);
 
 document.addEventListener('DOMContentLoaded', updateDate);
 
@@ -44,9 +51,7 @@ function updateDate() {
 
     dateField.textContent = `${day} ${month}`; 
 }
-
-const ratings = document.querySelectorAll(".rating");
-ratings.forEach((rating) => {
+function setRating(){
   const ratingContent = rating.innerHTML;
   const ratingScore = parseInt(ratingContent, 10);
   const scoreClass =
@@ -58,4 +63,12 @@ ratings.forEach((rating) => {
   rating.innerHTML = `<span>${ratingScore} ${
     ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
   }</span>`;
-});
+}
+function setCashInToLocalStorage(){
+  const cashType = "cashIn";
+  localStorage.setItem('cashType', cashType);
+}
+function setCashOutToLocalStorage(){
+  const cashType = "cashOut";
+  localStorage.setItem('cashType', cashType);
+}

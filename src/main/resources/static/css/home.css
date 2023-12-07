@@ -147,23 +147,27 @@ img {
     background: #ddd;
 }
 
-.main-buttons button {
+.main-buttons a {
     border-radius: 30px;
     width: 150px;
     height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     border: 0;
     cursor: pointer;
     color: #fff;
 }
 
 @media only screen and (max-width: 767px) {
-    .main-buttons button {
+    .main-buttons a {
         width: 100px;
-        height: 30px;
+        height: 40px;
     }
 }
 
-.main-buttons button:first-child {
+.main-buttons a:first-child {
     background: #4CAF50;
 
     &:hover {
@@ -171,16 +175,16 @@ img {
     }
 }
 
-.main-buttons button:last-child {
+.main-buttons a:last-child {
     background: #f02323;
 
     &:hover {
         background: #cd3333;
-    }
+    }   
 }
 .overview {
     position: relative;
-    min-height: 90%;
+    min-height: 100%;
     height: auto;
     display: grid;
     grid-template-rows: 90% 10%;

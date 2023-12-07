@@ -1,0 +1,71 @@
+
+h2{
+    margin: 20px auto;
+    margin-top: 40px;
+
+}
+input{
+    position: relative;
+    padding: 20px;
+    width: 40%;
+    margin: 0 auto;
+    font-size: 0.8em;
+}
+#back-btn{
+    position: relative;
+    left: 15px;
+    top: 15px;
+}
+#save-btn{
+    margin: 30px auto;
+    text-decoration: none;
+    background: green;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    &:hover{
+        background: rgb(4, 179, 4)
+    }
+}
+@media only screen and (max-width: 767px) {
+    input{
+        width: 85%;
+        font-size: 1em;
+    }
+}
+.categories{
+    position: sticky;
+    height: 42%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    min-height: 180px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    overflow-y: auto;
+    gap: 10px;
+    box-shadow: 0 -5px 10px -5px rgba(0, 0, 0, 0.5);
+    background: #eee;
+}
+.categories button{
+    height: 70px;
+    width: 70px;
+    margin: auto;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: #fff;
+    border-radius: 10px;
+    border: 0;
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+        transform: scale(1.05);
+    }
+}
+@media only screen and (max-width: 767px) {
+    .categories button{
+        height: 40px;
+        width: 40px;
+    }
+}
