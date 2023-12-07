@@ -4,6 +4,7 @@ const cashOutCategories = document.querySelector('.categories.cash-out');
 const hideCashInBtutton = document.getElementById('hide-categories-button');
 const hideCashOutBtutton = document.getElementById('hide-categories-button2');
 const categoryButtons = document.querySelectorAll('button');
+const saveTransactionButton = document.getElementById('save-btn');
 
 let isOpen = true;
 
@@ -19,11 +20,13 @@ function setCashType() {
     if (cashType === 'cashIn') {
         cashOutCategories.classList.add('hidden');
         cashInCategories.classList.remove('hidden');
+        saveTransactionButton.href = '/transaction/save?type=cash-in';
         hideCashInBtutton.addEventListener('click',
             (event) => toggleCategories(event, hideCashInBtutton, cashInCategories));
     } else {
         cashInCategories.classList.add('hidden');
         cashOutCategories.classList.remove('hidden');
+        saveTransactionButton.href = '/transaction/save?type=cash-out';
         hideCashOutBtutton.addEventListener('click',
             (event) => toggleCategories(event, hideCashOutBtutton, cashOutCategories));
     }

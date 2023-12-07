@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("transaction")
 public class TransactionController {
-
-    @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST}, value = "cash")
+    @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST}, value = "save")
     public String handleTransaction(){
-        return "add-transaction";     /*"redirect:/transaction";*/
+        return "/home";
     }
 }

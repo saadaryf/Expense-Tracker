@@ -17,7 +17,7 @@
     <input id="date" type="text" name="date" placeholder="Date: dd-mm-yyyy">
     <input type="text" name="description" placeholder="Description">
     
-    <a id="save-btn" href="#" onclick="ValidateDate();">Save Transaction</a>
+    <a id="save-btn" th:href="@{/transaction/save?: }" onclick="ValidateDate();">Save Transaction</a>
 
     <div class="categories cash-in hidden">
         <a id="hide-categories-button">︾</a>
