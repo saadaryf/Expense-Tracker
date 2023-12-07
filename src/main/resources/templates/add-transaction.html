@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Add Transaction</title>
-    <link rel="stylesheet" href="../static/css/add-transaction.css">
-    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/add-transaction.css}">
+    <!-- <link rel="stylesheet" href="../static/css/add-transaction.css">
+    <link rel="stylesheet" href="../static/css/home.css"> -->
 </head>
 <body>
-    <a id="back-btn" href="home.html">Back Home</a>
+    <a id="back-btn" href="/home">Back Home</a>
     <h2>Add Transaction Details</h2>
     <input type="text" name="category" placeholder="Category">
     <input type="number" name="amount" placeholder="Amount">
@@ -18,39 +20,42 @@
     <a id="save-btn" href="#">Save Transaction</a>
 
     <div class="categories cash-in hidden">
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
+        <a id="hide-categories-button">︾</a>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
     </div>
     <div class="categories cash-out ">
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
-        <button><img src="../static/img/house-chimney.svg" alt=""></button>
+        <a id="hide-categories-button2">︾</a>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
+        <button><img th:src="@{/img/house-chimney.svg}" alt=""></button>
     </div>
 
-    <script src="../static/js/add-transaction.js"></script>
+    <script th:src="@{/js/add-transaction.js}"></script>
+    <!-- <script src="../static/js/add-transaction.js"></script> -->
 </body>
 </html>

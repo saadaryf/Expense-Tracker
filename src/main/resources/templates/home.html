@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Home</title>
-    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
@@ -105,12 +105,12 @@
             </div>
         </div>
         <div class="main-buttons">
-            <a id="cash-in-button" href="add-transaction.html">Cash In</a>
-            <a id="cash-out-button" href="add-transaction.html">Cash Out</a>
+            <a id="cash-in-button" href="/transaction/cash">Cash In</a>
+            <a id="cash-out-button" href="/transaction/cash">Cash Out</a>
         </div>
     </main>
 
-    <script src="../static/js/home.js"></script>
+    <script src="js/home.js"></script>
 </body>
 
 </html>

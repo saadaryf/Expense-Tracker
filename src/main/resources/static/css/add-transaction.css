@@ -1,12 +1,12 @@
 
 h2{
     margin: 20px auto;
-    margin-top: 40px;
+    margin-top: 20px;
 
 }
 input{
     position: relative;
-    padding: 20px;
+    padding: 15px;
     width: 40%;
     margin: 0 auto;
     font-size: 0.8em;
@@ -33,27 +33,44 @@ input{
         font-size: 1em;
     }
 }
-.categories{
-    position: sticky;
-    height: 42%;
+.categories a{
+    position: fixed;
+    text-decoration: none;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    min-height: 180px;
+    color: green;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+.categories{
+    position: fixed;
+    height: 40%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    min-height: 200px;
+    width: 100%;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     overflow-y: auto;
-    gap: 10px;
+    gap: 5px;
     box-shadow: 0 -5px 10px -5px rgba(0, 0, 0, 0.5);
     background: #eee;
+    bottom: 0;
+    transition: all 0.3s ease-in-out;
 }
 .categories button{
     height: 70px;
     width: 70px;
     margin: auto;
     cursor: pointer;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 40px;
+    margin-bottom: 10px;
     background: #fff;
     border-radius: 10px;
     border: 0;
@@ -64,6 +81,9 @@ input{
     }
 }
 @media only screen and (max-width: 767px) {
+    .categories a{
+        background: #fff;
+    }
     .categories button{
         height: 40px;
         width: 40px;
