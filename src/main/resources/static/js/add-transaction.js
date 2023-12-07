@@ -3,10 +3,16 @@ const cashInCategories = document.querySelector('.categories.cash-in');
 const cashOutCategories = document.querySelector('.categories.cash-out');
 const hideCashInBtutton = document.getElementById('hide-categories-button');
 const hideCashOutBtutton = document.getElementById('hide-categories-button2');
+const categoryButtons = document.querySelectorAll('button');
 
 let isOpen = true;
 
 document.addEventListener('DOMContentLoaded', setCashType);
+categoryButtons.forEach((button) => {
+    const categoryName = button.querySelector('p').innerText;
+    button.addEventListener('click', () => setCategoryType(categoryName));
+});
+
 
 function setCashType() {
     const cashType = localStorage.getItem('cashType');
@@ -48,5 +54,18 @@ function toggleCategories(event, clickedButton, categoriesDiv) {
         clickedButton.style.borderBottomLeftRadius = '0px';
         clickedButton.style.borderBottomRightRadius = '0px';
         isOpen = true;
+    }
+}
+
+function setCategoryType(categoryName) {
+    const categoryField = document.getElementById('category');
+    categoryField.value = categoryName;
+}
+
+function ValidateDate(){
+    const dateField = document.getElementById('date');
+    const datePattern = /^\d{2}-\d{2}-\d{4}$/;
+    if(!datePattern.test(dateField.value)){
+        alert("Please enter a valid date format (dd-mm-yyyy).");
     }
 }

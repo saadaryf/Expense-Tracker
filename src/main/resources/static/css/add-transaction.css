@@ -13,8 +13,12 @@ input{
 }
 #back-btn{
     position: relative;
-    left: 15px;
+    width: fit-content;
+    left: 25px;
     top: 15px;
+    text-decoration: none;
+    font-size: 1.1em;
+    color: black;
 }
 #save-btn{
     margin: 30px auto;
@@ -28,6 +32,9 @@ input{
     }
 }
 @media only screen and (max-width: 767px) {
+    #back-btn{
+        font-size: 1.5em;
+    }
     input{
         width: 85%;
         font-size: 1em;
@@ -62,7 +69,7 @@ input{
     box-shadow: 0 -5px 10px -5px rgba(0, 0, 0, 0.5);
     background: #eee;
     bottom: 0;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 .categories button{
     height: 70px;
@@ -75,10 +82,18 @@ input{
     border-radius: 10px;
     border: 0;
     transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     &:hover{
         box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
         transform: scale(1.05);
     }
+}
+.categories button p{
+    margin-top: 5px;
+    color: gray;
 }
 @media only screen and (max-width: 767px) {
     .categories a{
@@ -87,5 +102,14 @@ input{
     .categories button{
         height: 40px;
         width: 40px;
+        font-size: 0.7em;
+    }
+    .categories button p{
+        position: absolute;
+        margin-top: 55px;
+        z-index: -1;
+    }
+    .categories button img{
+        width: 20px;
     }
 }
