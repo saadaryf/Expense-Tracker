@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
 
 
     }
+
+    @Override
+    public User findByUsername(String username) {
+        Optional<User> foundUser = userRepository.findByUsername(username);
+        if (foundUser.isPresent()){
+            User user = foundUser.get();
+            return user;
+        }
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -9,26 +10,33 @@
     <!-- <link rel="stylesheet" href="../static/css/add-transaction.css">
     <link rel="stylesheet" href="../static/css/home.css"> -->
 </head>
+
 <body>
-    <a id="back-btn" href="/home">❮</a>
+    <p id="error-popup">Please Enter Valid Info</p>
+    <a id="back-btn" href="/">❮</a>
     <h2>Add Transaction Details</h2>
-    <input id="category" type="text" name="category" placeholder="Category: select from below" readonly>
-    <input type="number" name="amount" placeholder="Amount">
-    <input id="date" type="text" name="date" placeholder="Date: dd-mm-yyyy">
-    <input type="text" name="description" placeholder="Description">
-    
-    <a id="save-btn" th:href="@{/transaction/save?: }" onclick="ValidateDate();">Save Transaction</a>
+    <form id="transaction-form" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input id="category" type="text" name="category"
+            placeholder="Category: select from below" readonly required>
+        <input type="number" name="amount" placeholder="Amount" required>
+        <input id="date" type="text" name="date" placeholder="Date: dd-mm-yyyy" required>
+        <input type="text" name="description" placeholder="Description" required>
+        <input type="submit" id="save-btn" value="Save Transaction">
+    </form>
 
     <div class="categories cash-in hidden">
         <a id="hide-categories-button">︾</a>
-        <button  th:each="category : ${categories}" th:if="${category.categoryType == T(com.managers.expensetracker.model.TransactionType).CASH_IN}">
+        <button th:each="category : ${categories}"
+            th:if="${category.categoryType == T(com.managers.expensetracker.model.TransactionType).CASH_IN}">
             <img th:src="@{'/img/' + ${category.name} + '.svg'}" alt="CategoryImage">
             <p th:text="${category.name}">CategoryName</p>
         </button>
-    </div>    
+    </div>
     <div class="categories cash-out ">
         <a id="hide-categories-button2">︾</a>
-        <button th:each="category : ${categories}" th:if="${category.categoryType == T(com.managers.expensetracker.model.TransactionType).CASH_OUT}">
+        <button th:each="category : ${categories}"
+            th:if="${category.categoryType == T(com.managers.expensetracker.model.TransactionType).CASH_OUT}">
             <img th:src="@{'/img/' + ${category.name} + '.svg'}" alt="CategoryImage">
             <p th:text="${category.name}">CategoryName</p>
         </button>
@@ -37,4 +45,5 @@
     <script th:src="@{/js/add-transaction.js}"></script>
     <!-- <script src="../static/js/add-transaction.js"></script> -->
 </body>
+
 </html>

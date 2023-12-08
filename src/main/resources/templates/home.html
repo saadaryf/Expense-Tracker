@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Home</title>
     <link rel="stylesheet" th:href="@{css/home.css}">
+    <!-- <link rel="stylesheet" href="../static/css/home.css"> -->
 </head>
 
 <body>
     <header>
-        <form th:action="@{/logout}" method="post">
+        <form id="logout-form" th:action="@{/logout}" method="post">
             <button id="logout-button" type="submit"><img th:src="@{img/sign-out-alt.svg}" alt=""></button>
         </form>
         <div class="cash">
             <div>
-                <h3>00</h3>
+                <h3 th:text="${totalCashIn}">00</h3>
                 <p>Cash In</p>
             </div>
             <div>-</div>
             <div>
-                <h3>00</h3>
+                <h3 th:text="${totalCashOut}">00</h3>
                 <p>Cash Out</p>
             </div>
             <div>=</div>
             <div>
-                <h3>00</h3>
+                <h3 th:text="${totalBalance}">00</h3>
                 <p>Balance</p>
             </div>
         </div>
@@ -39,72 +40,30 @@
     </div>
     <main>
         <div class="list">
-            <div class="list-item cash-out"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>60000</p>
-            </div>
-            <div class="list-item cash-in"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>80000</p>
-            </div>
-            <div class="list-item cash-out"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>60000</p>
-            </div>
-            <div class="list-item cash-in"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>80000</p>
-            </div>
-            <div class="list-item cash-out"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>60000</p>
-            </div>
-            <div class="list-item cash-in"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>80000</p>
-            </div>
-            <div class="list-item cash-out"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>60000</p>
-            </div>
-            <div class="list-item cash-in"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>80000</p>
-            </div>
-            <div class="list-item cash-out"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>60000</p>
-            </div>
-            <div class="list-item cash-in"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>80000</p>
-            </div>
-            <div class="list-item cash-out"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>60000</p>
-            </div>
-            <div class="list-item cash-in"> <!-- class= cash-in/cash-out -->
-                <img src="img/house-chimney.svg" alt="">
-                <p>Rent</p>
-                <p>80000</p>
+            <div th:each="transaction : ${transactions}"
+                th:class="${transaction.transactionType == T(com.managers.expensetracker.model.TransactionType).CASH_IN} ? 'list-item cash-in' : 'list-item cash-out'">
+                <img th:src="@{'/img/' + ${transaction.name} + '.svg'}" alt="CategoryImage">
+                <div>
+                    <b th:text="${transaction.name}">Name</b>
+                    <p th:text="${transaction.description}">this is description</p>
+                </div>
+                <div>
+                    <p
+                        th:text="${transaction.transactionType == T(com.managers.expensetracker.model.TransactionType).CASH_IN} ? '+' + ${transaction.amount} : '-' + ${transaction.amount}">
+                    </p>
+                </div>
             </div>
         </div>
+
         <div class="overview hidden">
-            <div class="rating">82%</div>
+            <div class="rating" th:text="${balancePercentage + '%'}">82%</div>
             <div class="total-stats">
-                <p>Total Cash In Transactions: <span>3</span></p>
-                <p>Total Cash Out Transactions: <span>2</span></p>
+                <div>
+                    <b>Total Cash In Transactions: <span th:text="${numberOfCashInTransactions + ','}">3,</span></b>
+                </div>
+                <div>
+                    <b>Total Cash Out Transactions: <span th:text="${numberOfCashOutTransactions + ','}">5,</span></b>
+                </div>
             </div>
         </div>
         <div class="main-buttons">
@@ -114,6 +73,7 @@
     </main>
 
     <script src="js/home.js"></script>
+    <!-- <script src="../static/js/home.js"></script> -->
 </body>
 
 </html>

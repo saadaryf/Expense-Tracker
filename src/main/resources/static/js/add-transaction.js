@@ -5,33 +5,36 @@ const hideCashInBtutton = document.getElementById('hide-categories-button');
 const hideCashOutBtutton = document.getElementById('hide-categories-button2');
 const categoryButtons = document.querySelectorAll('button');
 const saveTransactionButton = document.getElementById('save-btn');
+const transactionForm = document.getElementById('transaction-form');
+const dateField = document.getElementById('date');
+const categoryField = document.getElementById('category');
 
 let isOpen = true;
 
 document.addEventListener('DOMContentLoaded', setCashType);
+document.addEventListener('DOMContentLoaded', setTodaysDate);
+saveTransactionButton.addEventListener('click', ValidateDate);
 categoryButtons.forEach((button) => {
     const categoryName = button.querySelector('p').innerText;
     button.addEventListener('click', () => setCategoryType(categoryName));
 });
-
 
 function setCashType() {
     const cashType = localStorage.getItem('cashType');
     if (cashType === 'cashIn') {
         cashOutCategories.classList.add('hidden');
         cashInCategories.classList.remove('hidden');
-        saveTransactionButton.href = '/transaction/save?type=cash-in';
+        transactionForm.action = '/transaction/save?type=cash-in';
         hideCashInBtutton.addEventListener('click',
             (event) => toggleCategories(event, hideCashInBtutton, cashInCategories));
     } else {
         cashInCategories.classList.add('hidden');
         cashOutCategories.classList.remove('hidden');
-        saveTransactionButton.href = '/transaction/save?type=cash-out';
+        transactionForm.action = '/transaction/save?type=cash-out';
         hideCashOutBtutton.addEventListener('click',
             (event) => toggleCategories(event, hideCashOutBtutton, cashOutCategories));
     }
 }
-
 function toggleCategories(event, clickedButton, categoriesDiv) {
     event.preventDefault();
 
@@ -39,6 +42,7 @@ function toggleCategories(event, clickedButton, categoriesDiv) {
         categoriesDiv.style.height = '0%';
         categoriesDiv.style.minHeight = '30px';
         categoriesDiv.style.overflowY = 'hidden';
+
         clickedButton.style.color = 'purple';
         clickedButton.style.transform = 'rotate(180deg)';
         clickedButton.style.borderTopRightRadius = '0px'
@@ -50,6 +54,7 @@ function toggleCategories(event, clickedButton, categoriesDiv) {
         categoriesDiv.style.height = '40%';
         categoriesDiv.style.minHeight = '200px';
         categoriesDiv.style.overflowY = 'auto';
+
         clickedButton.style.color = 'green';
         clickedButton.style.transform = 'rotate(0deg)';
         clickedButton.style.borderTopRightRadius = '10px'
@@ -61,14 +66,28 @@ function toggleCategories(event, clickedButton, categoriesDiv) {
 }
 
 function setCategoryType(categoryName) {
-    const categoryField = document.getElementById('category');
     categoryField.value = categoryName;
 }
 
-function ValidateDate(){
-    const dateField = document.getElementById('date');
+function ValidateDate(event) {
+    const errorPopup = document.getElementById('error-popup');
     const datePattern = /^\d{2}-\d{2}-\d{4}$/;
-    if(!datePattern.test(dateField.value)){
-        alert("Please enter a valid date format (dd-mm-yyyy).");
+
+    if (!datePattern.test(dateField.value)) {
+        errorPopup.innerText = 'Please Enter a Valid Date format (dd-mm-yyyy)';
+        errorPopup.style.display = 'block';
+        event.preventDefault();
     }
+}
+
+function setTodaysDate() {
+    const currentDate = new Date();
+
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const year = currentDate.getFullYear();
+
+    const formattedDate = `${day}-${month}-${year}`;
+
+    dateField.value = formattedDate;
 }

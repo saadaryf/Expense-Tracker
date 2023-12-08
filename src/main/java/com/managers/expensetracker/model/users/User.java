@@ -1,6 +1,5 @@
 package com.managers.expensetracker.model.users;
 
-import com.managers.expensetracker.model.Balance;
 import com.managers.expensetracker.model.Transaction;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,9 +17,6 @@ public class User {
     private String name;
     private String username;
     private String password;
-
-    @OneToOne(mappedBy = "user")
-    private Balance balance;
 
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;

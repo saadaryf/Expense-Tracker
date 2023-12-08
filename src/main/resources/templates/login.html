@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scaleable=no">
     <!-- <link rel="stylesheet" href="../static/css/login.css"> -->
     <link rel="stylesheet" th:href="@{/css/login.css}">
 
@@ -11,22 +11,28 @@
 </head>
 
 <body>
-    <form action="/user/save" >
+    <h1>Expense Tracker</h1>
+    <form id="signup-form" class="hidden" action="/user/save" >
         <input type="text" name="name" id="name" placeholder="Name: ">
         <input type="text" name="username" id="username" placeholder="Username: ">
         <input type="password" name="password" id="password" placeholder="Password: ">
         <input type="submit" id="submit" value="SignUp">
     </form>
-    <form th:action="@{/login}" method="post">
+    <p id="login-button" class="hidden">Already Have an Account?<a  href="#login"> Login</a></p>
+    <form id="login-form" th:action="@{/login}" method="post">
         <input type="text" name="username" placeholder="Username: ">
         <input type="password" name="password" placeholder="Password: ">
         <input id="login" type="submit" value="Login">
     </form>
+    <p id="signup-button">Don't Have an Account?<a  href="#signup"> SignUp</a></p>
 
-    <script th:if="${param.error}">
+
+    <!-- <script th:if="${param.error}">
         alert('Invalid username or password.');
-    </script>
+    </script> -->
 
+
+    <script th:src="@{js/login.js}"></script>
 </body>
 
 </html>

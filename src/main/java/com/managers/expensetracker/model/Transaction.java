@@ -4,6 +4,7 @@ import com.managers.expensetracker.model.users.User;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,8 +14,8 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer amount;
-    private Date date;
+    private Double amount;
+    private LocalDateTime date;
     private String description;
 
     @Enumerated(EnumType.STRING)

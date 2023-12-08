@@ -11,9 +11,6 @@ input{
     margin: 0 auto;
     font-size: 0.8em;
 }
-input:first-child{
-    background: red;
-}
 #back-btn{
     position: relative;
     width: fit-content;
@@ -115,4 +112,27 @@ input:first-child{
     .categories button img{
         width: 20px;
     }
+}
+#error-popup{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    margin: 5px auto;
+    font-size: 0.6em;
+    letter-spacing: 2px;
+    display: none;
+    color: red;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+form input:nth-child(2){
+    color: green;
+    cursor: default;
+    outline: none;
+}
+form input:last-child{
+    cursor: pointer;
 }
