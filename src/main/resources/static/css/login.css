@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: rgb(80, 104, 43);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+    overflow: hidden;
+    gap: 20px;
+}
+form{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+input{
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+input[type="submit"]{
+    cursor: pointer;
+}

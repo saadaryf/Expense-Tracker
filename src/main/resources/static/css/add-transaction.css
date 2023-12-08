@@ -11,6 +11,9 @@ input{
     margin: 0 auto;
     font-size: 0.8em;
 }
+input:first-child{
+    background: red;
+}
 #back-btn{
     position: relative;
     width: fit-content;

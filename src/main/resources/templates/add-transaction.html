@@ -21,42 +21,17 @@
 
     <div class="categories cash-in hidden">
         <a id="hide-categories-button">︾</a>
-        <button><img th:src="@{/img/salary.svg}" alt=""><p>Salary</p></button>
-        <button><img th:src="@{/img/business.svg}" alt=""><p>Business</p></button>
-        <button><img th:src="@{/img/savings.svg}" alt=""><p>Savings</p></button>
-        <button><img th:src="@{/img/house-building.svg}" alt=""><p>Rent</p></button>
-        <button><img th:src="@{/img/bank.svg}" alt=""><p>Loan</p></button>
-        <button><img th:src="@{/img/wallet.svg}" alt=""><p>Other</p></button>
-        <!-- <button><img th:src="@{/img/house-chimney.svg}" alt=""></button> -->
-    </div>
+        <button  th:each="category : ${categories}" th:if="${category.categoryType == T(com.managers.expensetracker.model.TransactionType).CASH_IN}">
+            <img th:src="@{'/img/' + ${category.name} + '.svg'}" alt="CategoryImage">
+            <p th:text="${category.name}">CategoryName</p>
+        </button>
+    </div>    
     <div class="categories cash-out ">
         <a id="hide-categories-button2">︾</a>
-        <button><img th:src="@{/img/shopping-bag.svg}" alt=""><p>Groceries</p></button>
-        <button><img th:src="@{/img/gas-pump-alt.svg}" alt=""><p>Fuel</p></button>
-        <button><img th:src="@{/img/hamburger-soda.svg}" alt=""><p>Food</p></button>
-        <button><img th:src="@{/img/car.svg}" alt=""><p>Vehicle</p></button>
-        <button><img th:src="@{/img/taxi.svg}" alt=""><p>Taxi</p></button>
-        <button><img th:src="@{/img/tshirt.svg}" alt=""><p>Clothes</p></button>
-        <button><img th:src="@{/img/bags-shopping.svg}" alt=""><p>Shopping</p></button>
-        <button><img th:src="@{/img/bulb.svg}" alt=""><p>Electricity</p></button>
-        <button><img th:src="@{/img/fire-burner.svg}" alt=""><p>Gas</p></button>
-        <button><img th:src="@{/img/faucet.svg}" alt=""><p>Water</p></button>
-        <button><img th:src="@{/img/wifi-alt.svg}" alt=""><p>Internet</p></button>
-        <button><img th:src="@{/img/house-building.svg}" alt=""><p>Rent</p></button>
-        <button><img th:src="@{/img/house-chimney.svg}" alt=""><p>House</p></button>
-        <button><img th:src="@{/img/gym.svg}" alt=""><p>Gym</p></button>
-        <button><img th:src="@{/img/barber-shop.svg}" alt=""><p>Beauty</p></button>
-        <button><img th:src="@{/img/umbrella-beach.svg}" alt=""><p>Vacation</p></button>
-        <button><img th:src="@{/img/doctor.svg}" alt=""><p>Health</p></button>
-        <button><img th:src="@{/img/graduation-cap.svg}" alt=""><p>Education</p></button>
-        <button><img th:src="@{/img/bank.svg}" alt=""><p>Loan</p></button>
-        <button><img th:src="@{/img/cat.svg}" alt=""><p>Pets</p></button>
-        <button><img th:src="@{/img/user-shield.svg}" alt=""><p>Insurance</p></button>
-        <button><img th:src="@{/img/gift.svg}" alt=""><p>Gifts</p></button>
-        <button><img th:src="@{/img/hands-usd.svg}" alt=""><p>Donations</p></button>
-        <button><img th:src="@{/img/sack-dollar.svg}" alt=""><p>Tax</p></button>
-        <button><img th:src="@{/img/wallet.svg}" alt=""><p>Others</p></button>
-
+        <button th:each="category : ${categories}" th:if="${category.categoryType == T(com.managers.expensetracker.model.TransactionType).CASH_OUT}">
+            <img th:src="@{'/img/' + ${category.name} + '.svg'}" alt="CategoryImage">
+            <p th:text="${category.name}">CategoryName</p>
+        </button>
     </div>
 
     <script th:src="@{/js/add-transaction.js}"></script>

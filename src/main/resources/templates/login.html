@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../static/css/login.css"> -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
     <title>Login</title>
 </head>
+
 <body>
-    
+    <form action="/user/save" >
+        <input type="text" name="name" id="name" placeholder="Name: ">
+        <input type="text" name="username" id="username" placeholder="Username: ">
+        <input type="password" name="password" id="password" placeholder="Password: ">
+        <input type="submit" id="submit" value="SignUp">
+    </form>
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" placeholder="Username: ">
+        <input type="password" name="password" placeholder="Password: ">
+        <input id="login" type="submit" value="Login">
+    </form>
+
+    <script th:if="${param.error}">
+        alert('Invalid username or password.');
+    </script>
+
 </body>
+
 </html>

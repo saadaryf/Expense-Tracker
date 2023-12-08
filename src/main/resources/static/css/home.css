@@ -259,3 +259,17 @@ img {
         height: 200px;
     }
 }
+form{
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+form img{
+    width: 20px;
+}
+#logout-button{
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+}
