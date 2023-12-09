@@ -72,7 +72,8 @@ public class HomeController {
     }
     public void balancePercentage(Double totalCashIn, Double totalCashOut, Model model){
         Double balancePercentage = (totalCashOut / totalCashIn) * 100;
-        model.addAttribute("balancePercentage",balancePercentage);
+        Integer IntegerPercentage = balancePercentage.intValue();
+        model.addAttribute("balancePercentage",IntegerPercentage);
     }
     public void numberOfCashInTransactions(List<Transaction> transactions, Model model){
         Long numberOfCashInTransactions = transactions.stream()

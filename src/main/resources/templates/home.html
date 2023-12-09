@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Home</title>
     <link rel="stylesheet" th:href="@{css/home.css}">
-    <!-- <link rel="stylesheet" href="../static/css/home.css"> -->
+    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 
 <body>
@@ -40,29 +40,35 @@
     </div>
     <main>
         <div class="list">
-            <div th:each="transaction : ${transactions}"
+            <a href="#" th:each="transaction : ${transactions}"
                 th:class="${transaction.transactionType == T(com.managers.expensetracker.model.TransactionType).CASH_IN} ? 'list-item cash-in' : 'list-item cash-out'">
                 <img th:src="@{'/img/' + ${transaction.name} + '.svg'}" alt="CategoryImage">
                 <div>
                     <b th:text="${transaction.name}">Name</b>
-                    <p th:text="${transaction.description}">this is description</p>
+                    <p style="color:gray;" th:text="${transaction.description}">this is description</p>
                 </div>
                 <div>
                     <p
                         th:text="${transaction.transactionType == T(com.managers.expensetracker.model.TransactionType).CASH_IN} ? '+' + ${transaction.amount} : '-' + ${transaction.amount}">
                     </p>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="overview hidden">
-            <div class="rating" th:text="${balancePercentage + '%'}">82%</div>
+            <div class="analytics">
+                <div class="rating" th:text="${balancePercentage + '%'}">82%</div>
+                <div class="bar-chart">
+                    <div class="cash-out"><h6 th:text="${balancePercentage + '%'}">60%</h6><p>Spent</p></div>
+                    <div class="balance"><h6 th:text="${100 - balancePercentage + '%'}">40%</h6><p>Remaining</p></div>
+                </div>
+            </div>
             <div class="total-stats">
                 <div>
-                    <b>Total Cash In Transactions: <span th:text="${numberOfCashInTransactions + ','}">3,</span></b>
+                    <b>Total Cash In Transactions: <span th:text="${numberOfCashInTransactions}">00</span></b>
                 </div>
                 <div>
-                    <b>Total Cash Out Transactions: <span th:text="${numberOfCashOutTransactions + ','}">5,</span></b>
+                    <b>Total Cash Out Transactions: <span th:text="${numberOfCashOutTransactions}">00</span></b>
                 </div>
             </div>
         </div>
@@ -73,7 +79,7 @@
     </main>
 
     <script src="js/home.js"></script>
-    <!-- <script src="../static/js/home.js"></script> -->
+    <script src="../static/js/home.js"></script>
 </body>
 
 </html>
