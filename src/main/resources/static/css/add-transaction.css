@@ -20,6 +20,14 @@ input{
     font-size: 1.1em;
     color: black;
 }
+#delete-btn{
+    position: absolute;
+    width: fit-content;
+    right: 25px;
+    top: 15px;
+    text-decoration: none;
+    color: black;
+}
 #save-btn{
     margin: 30px auto;
     text-decoration: none;

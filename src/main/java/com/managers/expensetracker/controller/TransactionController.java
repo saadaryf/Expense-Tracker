@@ -67,6 +67,11 @@ public class TransactionController {
         transactionService.updateTransaction(transactionRequest,id,type);
         return "redirect:/";
     }
+    @GetMapping("delete")
+    public String deleteTransaction(@RequestParam("id") Long id){
+        transactionService.deleteTransaction(id);
+        return "redirect:/";
+    }
     public User getCurrentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

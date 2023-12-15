@@ -10,6 +10,7 @@ const dateField = document.getElementById('date');
 const categoryField = document.getElementById('category');
 const transactionType = localStorage.getItem('transactionType');
 
+
 let isOpen = true;
 
 document.addEventListener('DOMContentLoaded', setCashType);
@@ -106,6 +107,17 @@ function updateFieldsAndButtonName(){
     const type = urlParams.get('type');
     transactionForm.action = `/transaction/update?id=${id}&type=${type}`;
     saveTransactionButton.value = 'Update Transaction';
-    console.log('transaction type  = ' + transactionType);
+    dateField.style.display = 'none';
+    confirmAndDelete(id);
 }
-console.log('transaction type  out = ' + transactionType);
+function confirmAndDelete(id){
+    const deleteBtn = document.getElementById('delete-btn');
+    deleteBtn.addEventListener('click', function(event){
+        const confirmed = confirm("Are you sure you want to delete?");
+        if(!confirmed){
+            event.preventDefault();
+        }else{
+            deleteBtn.href = `/transaction/delete?id=${id}`;
+        }
+    })
+}

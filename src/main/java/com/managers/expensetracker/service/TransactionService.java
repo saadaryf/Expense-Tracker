@@ -16,4 +16,7 @@ public interface TransactionService {
     @Transactional
     void updateTransaction(TransactionRequest transactionRequest, Long id, String type);
 
+    @Transactional
+    void deleteTransaction(Long id);
+
 }
