@@ -40,7 +40,7 @@
     </div>
     <main>
         <div class="list">
-            <a href="#" th:each="transaction : ${transactions}"
+            <a th:href="@{/transaction(id=${transaction.id}, name=${transaction.name}, amount=${transaction.amount}, description=${transaction.description}, type=${transaction.transactionType})}" th:each="transaction : ${transactions}"
                 th:class="${transaction.transactionType == T(com.managers.expensetracker.model.TransactionType).CASH_IN} ? 'list-item cash-in' : 'list-item cash-out'">
                 <img th:src="@{'/img/' + ${transaction.name} + '.svg'}" alt="CategoryImage">
                 <div>

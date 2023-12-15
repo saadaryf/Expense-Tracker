@@ -122,9 +122,11 @@ img {
     align-items: center;
     border-bottom: 1px solid #aaa;
     border-radius: 5px;
-    margin-top: 5px;
     text-decoration: none;
     color: black;
+    &:hover{
+        background: #eee;
+    }
 }
 
 .list-item div:last-child {

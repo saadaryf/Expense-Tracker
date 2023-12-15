@@ -14,14 +14,14 @@
 <body>
     <p id="error-popup">Please Enter Valid Info</p>
     <a id="back-btn" href="/">❮</a>
-    <h2>Add Transaction Details</h2>
+    <h2>Transaction Details</h2>
     <form id="transaction-form" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input id="category" type="text" name="category"
             placeholder="Category: select from below" readonly required>
-        <input type="number" name="amount" placeholder="Amount" required>
+        <input id="amount" type="number" name="amount" placeholder="Amount" required>
         <input id="date" type="text" name="date" placeholder="Date: dd-mm-yyyy" required>
-        <input type="text" name="description" placeholder="Description" required>
+        <input id="description" type="text" name="description" placeholder="Description" required>
         <input type="submit" id="save-btn" value="Save Transaction">
     </form>
 

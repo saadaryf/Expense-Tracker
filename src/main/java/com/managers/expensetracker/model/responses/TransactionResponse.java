@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class TransactionResponse {
+    private Long id;
     private String name;
     private String description;
     private Double amount;

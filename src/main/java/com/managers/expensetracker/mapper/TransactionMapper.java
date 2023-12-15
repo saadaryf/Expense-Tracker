@@ -6,7 +6,6 @@ import com.managers.expensetracker.model.requests.TransactionRequest;
 import com.managers.expensetracker.model.responses.TransactionResponse;
 import com.managers.expensetracker.model.users.User;
 import com.managers.expensetracker.service.CategoryService;
-import com.managers.expensetracker.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +31,7 @@ public class TransactionMapper {
 
     public TransactionResponse mapToDTO(Transaction transaction){
         TransactionResponse transactionResponse =new TransactionResponse();
+        transactionResponse.setId(transaction.getId());
         transactionResponse.setName(transaction.getCategory().getName());
         transactionResponse.setAmount(transaction.getAmount());
         transactionResponse.setDescription(transaction.getDescription());

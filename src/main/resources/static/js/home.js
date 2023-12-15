@@ -9,12 +9,25 @@ const cashOutButton = document.getElementById('cash-out-button');
 const rating = document.querySelector(".rating");
 const chartBars = document.querySelectorAll('.bar-chart div');
 const analyticsDiv = document.querySelector('.analytics');
+const cashInItems = document.querySelectorAll('.list-item.cash-in');
+const cashOutItems = document.querySelectorAll('.list-item.cash-out');
 
 
 listButton.addEventListener('click', showList);
 overviewButton.addEventListener('click', showOverview);
 cashInButton.addEventListener('click', setCashInToLocalStorage);
+cashInButton.addEventListener('click', setTransactionTypeToSave);
 cashOutButton.addEventListener('click', setCashOutToLocalStorage);
+cashOutButton.addEventListener('click', setTransactionTypeToSave);
+cashInItems.forEach((item)=>{
+    item.addEventListener('click',setCashInToLocalStorage);
+    item.addEventListener('click',setTransactionTypeToUpdate);
+})
+cashOutItems.forEach((item)=>{
+  item.addEventListener('click',setCashOutToLocalStorage);
+  item.addEventListener('click',setTransactionTypeToUpdate);
+})
+
 document.addEventListener('DOMContentLoaded', setRating);
 document.addEventListener('DOMContentLoaded', updateDate);
 document.addEventListener('DOMContentLoaded', calculateChartBarsHeight);
@@ -105,4 +118,12 @@ function isInViewport(element) {
       rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
+}
+function setTransactionTypeToSave(){
+  const transactionType = "save";
+  localStorage.setItem('transactionType', transactionType);
+}
+function setTransactionTypeToUpdate(){
+  const transactionType = "update";
+  localStorage.setItem('transactionType', transactionType);
 }

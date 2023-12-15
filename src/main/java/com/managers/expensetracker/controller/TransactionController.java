@@ -8,7 +8,6 @@ import com.managers.expensetracker.model.TransactionType;
 import com.managers.expensetracker.model.requests.TransactionRequest;
 import com.managers.expensetracker.model.responses.CategoryResponse;
 import com.managers.expensetracker.model.users.User;
-import com.managers.expensetracker.repository.CategoryRepository;
 import com.managers.expensetracker.service.CategoryService;
 import com.managers.expensetracker.service.TransactionService;
 import com.managers.expensetracker.service.UserService;
@@ -53,11 +52,19 @@ public class TransactionController {
     }
     @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST}, value = "save")
     public String saveTransaction(@ModelAttribute TransactionRequest transactionRequest, @RequestParam("type") String type){
-        logger.info("\n\n"+transactionRequest+"\n\n");
         User user = getCurrentUser();
         TransactionType transactionType = "cash-in".equals(type) ? CASH_IN : CASH_OUT;
         Transaction transaction = transactionMapper.mapToEntity(transactionRequest,user, transactionType);
         transactionService.saveTransaction(transaction);
+        return "redirect:/";
+    }
+    @PostMapping("update")
+    public String updateTransaction(
+            @ModelAttribute TransactionRequest transactionRequest,
+            @RequestParam("id") Long id,
+            @RequestParam("type") String type
+    ){
+        transactionService.updateTransaction(transactionRequest,id,type);
         return "redirect:/";
     }
     public User getCurrentUser(){

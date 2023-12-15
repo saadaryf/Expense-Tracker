@@ -8,11 +8,13 @@ const saveTransactionButton = document.getElementById('save-btn');
 const transactionForm = document.getElementById('transaction-form');
 const dateField = document.getElementById('date');
 const categoryField = document.getElementById('category');
+const transactionType = localStorage.getItem('transactionType');
 
 let isOpen = true;
 
 document.addEventListener('DOMContentLoaded', setCashType);
 document.addEventListener('DOMContentLoaded', setTodaysDate);
+
 saveTransactionButton.addEventListener('click', ValidateDate);
 categoryButtons.forEach((button) => {
     const categoryName = button.querySelector('p').innerText;
@@ -24,13 +26,15 @@ function setCashType() {
     if (cashType === 'cashIn') {
         cashOutCategories.classList.add('hidden');
         cashInCategories.classList.remove('hidden');
-        transactionForm.action = '/transaction/save?type=cash-in';
+        saveTransactionButton.value = 'Save Transaction';
+        transactionType === 'save' ? (transactionForm.action = '/transaction/save?type=cash-in') : updateFieldsAndButtonName();
         hideCashInBtutton.addEventListener('click',
             (event) => toggleCategories(event, hideCashInBtutton, cashInCategories));
     } else {
         cashInCategories.classList.add('hidden');
         cashOutCategories.classList.remove('hidden');
-        transactionForm.action = '/transaction/save?type=cash-out';
+        saveTransactionButton.value = 'Save Transaction';
+        transactionType === 'save' ? (transactionForm.action = '/transaction/save?type=cash-in') : updateFieldsAndButtonName();
         hideCashOutBtutton.addEventListener('click',
             (event) => toggleCategories(event, hideCashOutBtutton, cashOutCategories));
     }
@@ -91,3 +95,17 @@ function setTodaysDate() {
 
     dateField.value = formattedDate;
 }
+
+function updateFieldsAndButtonName(){
+    var urlParams = new URLSearchParams(window.location.search);
+
+    categoryField.value = urlParams.get('name');
+    document.getElementById('amount').value = urlParams.get('amount');
+    document.getElementById('description').value = urlParams.get('description');
+    const id = urlParams.get('id');
+    const type = urlParams.get('type');
+    transactionForm.action = `/transaction/update?id=${id}&type=${type}`;
+    saveTransactionButton.value = 'Update Transaction';
+    console.log('transaction type  = ' + transactionType);
+}
+console.log('transaction type  out = ' + transactionType);

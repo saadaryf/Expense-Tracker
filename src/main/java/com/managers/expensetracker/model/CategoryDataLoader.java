@@ -4,8 +4,7 @@ import com.managers.expensetracker.repository.CategoryRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 
