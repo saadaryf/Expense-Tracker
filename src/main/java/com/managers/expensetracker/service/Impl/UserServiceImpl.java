@@ -17,17 +17,12 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public boolean saveUser(User user) {
+    public void saveUser(User user) {
         Optional<User> foundUser = userRepository.findByUsername(user.getUsername());
-        if(foundUser.isPresent()){
-            return false;
-        }else{
+        if(foundUser.isEmpty()){
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
-            return true;
         }
-
-
     }
 
     @Override

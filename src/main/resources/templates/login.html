@@ -11,8 +11,9 @@
 </head>
 
 <body>
+    <p id="login-error-popup">Error Here</p>
     <h1>Expense Tracker</h1>
-    <form id="signup-form" class="hidden" action="/user/save" >
+    <form id="signup-form" class="hidden" th:action="@{/user/save}" method="post" >
         <input type="text" name="name" id="name" placeholder="Name: ">
         <input type="text" name="username" id="username" placeholder="Username: ">
         <input type="password" name="password" id="password" placeholder="Password: ">
@@ -28,11 +29,13 @@
 
 
     <script th:if="${param.error}">
-        alert('Invalid username or password.');
+        alert('Invalid Credentials.');
     </script>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script th:src="@{/js/error-handling.js}"></script>
     <script th:src="@{js/login.js}"></script>
+    <!-- <script src="../static/js/login.js"></script> -->
 </body>
 
 </html>

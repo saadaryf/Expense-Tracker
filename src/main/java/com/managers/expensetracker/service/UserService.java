@@ -5,7 +5,7 @@ import jakarta.transaction.Transactional;
 
 public interface UserService {
     @Transactional
-    boolean saveUser(User user);
+    void saveUser(User user);
 
     @Transactional
     User findByUsername(String username);

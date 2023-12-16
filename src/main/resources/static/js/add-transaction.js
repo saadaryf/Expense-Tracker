@@ -9,7 +9,7 @@ const transactionForm = document.getElementById('transaction-form');
 const dateField = document.getElementById('date');
 const categoryField = document.getElementById('category');
 const transactionType = localStorage.getItem('transactionType');
-
+const errorPopup = document.getElementById('error-popup');
 
 let isOpen = true;
 
@@ -35,7 +35,7 @@ function setCashType() {
         cashInCategories.classList.add('hidden');
         cashOutCategories.classList.remove('hidden');
         saveTransactionButton.value = 'Save Transaction';
-        transactionType === 'save' ? (transactionForm.action = '/transaction/save?type=cash-in') : updateFieldsAndButtonName();
+        transactionType === 'save' ? (transactionForm.action = '/transaction/save?type=cash-out') : updateFieldsAndButtonName();
         hideCashOutBtutton.addEventListener('click',
             (event) => toggleCategories(event, hideCashOutBtutton, cashOutCategories));
     }
@@ -75,12 +75,11 @@ function setCategoryType(categoryName) {
 }
 
 function ValidateDate(event) {
-    const errorPopup = document.getElementById('error-popup');
     const datePattern = /^\d{2}-\d{2}-\d{4}$/;
 
     if (!datePattern.test(dateField.value)) {
         errorPopup.innerText = 'Please Enter a Valid Date format (dd-mm-yyyy)';
-        errorPopup.style.display = 'block';
+        errorPopup.classList.add('active');
         event.preventDefault();
     }
 }

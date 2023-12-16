@@ -7,10 +7,16 @@ import com.managers.expensetracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
 
 @Controller
 @RequestMapping("user")
+@Validated
 public class UserController {
     @Autowired
     UserMapper userMapper;
@@ -18,14 +24,10 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST}, value = "save")
-    public ResponseEntity<String> saveUser(@ModelAttribute UserRequest userRequest){
+    public String saveUser(@Valid @ModelAttribute UserRequest userRequest){
         User user = userMapper.mapToEntity(userRequest);
-        if(userService.saveUser(user)){
-            return ResponseEntity.ok("User Registered Success");
-        }else{
-            return ResponseEntity.ok("User Already Exists");
-        }
-
+        userService.saveUser(user);
+        return "redirect:/login";
     }
 
 }

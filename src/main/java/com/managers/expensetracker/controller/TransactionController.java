@@ -11,15 +11,19 @@ import com.managers.expensetracker.model.users.User;
 import com.managers.expensetracker.service.CategoryService;
 import com.managers.expensetracker.service.TransactionService;
 import com.managers.expensetracker.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.managers.expensetracker.model.TransactionType.CASH_IN;
@@ -27,6 +31,7 @@ import static com.managers.expensetracker.model.TransactionType.CASH_OUT;
 
 @Controller
 @RequestMapping("transaction")
+@Validated
 public class TransactionController {
     final Logger logger = LoggerFactory.getLogger(TransactionController.class);
 
@@ -50,16 +55,17 @@ public class TransactionController {
         model.addAttribute("categories", categoryResponses);
         return "add-transaction";
     }
-    @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST}, value = "save")
-    public String saveTransaction(@ModelAttribute TransactionRequest transactionRequest, @RequestParam("type") String type){
+    @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "save")
+    public String saveTransaction(@Valid @ModelAttribute TransactionRequest transactionRequest,
+                                             @RequestParam("type") String type) {
         User user = getCurrentUser();
         TransactionType transactionType = "cash-in".equals(type) ? CASH_IN : CASH_OUT;
-        Transaction transaction = transactionMapper.mapToEntity(transactionRequest,user, transactionType);
+        Transaction transaction = transactionMapper.mapToEntity(transactionRequest, user, transactionType);
         transactionService.saveTransaction(transaction);
         return "redirect:/";
     }
     @PostMapping("update")
-    public String updateTransaction(
+    public String updateTransaction(@Valid
             @ModelAttribute TransactionRequest transactionRequest,
             @RequestParam("id") Long id,
             @RequestParam("type") String type
@@ -77,6 +83,5 @@ public class TransactionController {
         String username = authentication.getName();
         return userService.findByUsername(username);
     }
-
 
 }

@@ -11,6 +11,9 @@ input{
     margin: 0 auto;
     font-size: 0.8em;
 }
+#category{
+    background: #ddd;
+}
 #back-btn{
     position: relative;
     width: fit-content;
@@ -131,7 +134,11 @@ input{
     font-size: 0.6em;
     letter-spacing: 2px;
     display: none;
-    color: red;
+    color: rgb(203, 0, 0);
+    padding: 10px;
+}
+#error-popup.active{
+    display: block;
 }
 form{
     display: flex;
