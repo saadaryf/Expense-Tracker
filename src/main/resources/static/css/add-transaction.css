@@ -21,6 +21,7 @@ input{
     color: black;
 }
 #delete-btn{
+    display: none;
     position: absolute;
     width: fit-content;
     right: 25px;

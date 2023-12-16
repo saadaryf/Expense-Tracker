@@ -112,6 +112,7 @@ function updateFieldsAndButtonName(){
 }
 function confirmAndDelete(id){
     const deleteBtn = document.getElementById('delete-btn');
+    deleteBtn.style.display = 'block';
     deleteBtn.addEventListener('click', function(event){
         const confirmed = confirm("Are you sure you want to delete?");
         if(!confirmed){

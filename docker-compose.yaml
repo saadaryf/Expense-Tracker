@@ -1,21 +1,19 @@
 version: '3.1'
 services:
-  localhost:
+  mysql-container:
     image: mysql:latest
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
-      - MYSQL_HOST=localhost
       - MYSQL_ROOT_USER=root
       - MYSQL_ROOT_PASSWORD=pass
-      - MYSQL_DATABASE=expenses
     volumes:
       - mysql-data:/var/lib/mysql
 
   phpmyadmin-container:
     image: phpmyadmin/phpmyadmin:latest
     ports:
-      - "8082:80"
+      - "8081:80"
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=mysql-container
@@ -23,13 +21,17 @@ services:
       - PMA_PASSWORD=pass
 
   expense-tracker:
+    image: expense-tracker
     build:
       context: .
-    image: expense-tracker
+      dockerfile: Dockerfile
     ports:
-      - "8081:80"
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/expenses
+      - SPRING_DATASOURCE_PASSWORD=pass
     depends_on:
-      - localhost
-volumes:
-    mysql-data:
+      - mysql-container
 
+volumes:
+  mysql-data:
