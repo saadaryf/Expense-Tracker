@@ -11,14 +11,25 @@ const chartBars = document.querySelectorAll('.bar-chart div');
 const analyticsDiv = document.querySelector('.analytics');
 const cashInItems = document.querySelectorAll('.list-item.cash-in');
 const cashOutItems = document.querySelectorAll('.list-item.cash-out');
+const profileDiv = document.querySelector('.profile');
+const openProfileButton = document.getElementById('profile-button');
+const editProfileButton = document.getElementById('edit-profile-button');
+const deleteAccountButton = document.getElementById('delete-account-button');
+const closeProfileButton = document.getElementById('close-profile-button');
+const updateUserForm = document.getElementById('update-form');
 
-
+deleteAccountButton.addEventListener('click', confirmDelete);
+openProfileButton.addEventListener('click', openProfile);
+editProfileButton.addEventListener('click', makeProfileEditable);
 listButton.addEventListener('click', showList);
 overviewButton.addEventListener('click', showOverview);
 cashInButton.addEventListener('click', setCashInToLocalStorage);
 cashInButton.addEventListener('click', setTransactionTypeToSave);
 cashOutButton.addEventListener('click', setCashOutToLocalStorage);
 cashOutButton.addEventListener('click', setTransactionTypeToSave);
+closeProfileButton.addEventListener('click', function(){
+  profileDiv.classList.remove('active');
+})
 cashInItems.forEach((item)=>{
     item.addEventListener('click',setCashInToLocalStorage);
     item.addEventListener('click',setTransactionTypeToUpdate);
@@ -37,6 +48,7 @@ if (isInViewport(analyticsDiv) && window.innerWidth <= 767) {
 
 let listDispayed = true;
 let overviewDisplayed = false;
+let profileIsNotEditable = true;
 
 function showList() {
   if (overviewDisplayed) {
@@ -126,4 +138,41 @@ function setTransactionTypeToSave(){
 function setTransactionTypeToUpdate(){
   const transactionType = "update";
   localStorage.setItem('transactionType', transactionType);
+}
+function openProfile(event) {
+  event.stopPropagation();
+  profileDiv.classList.add('active');
+  document.addEventListener('click', closeProfile);
+}
+
+function closeProfile(event) {
+  if (!profileDiv.contains(event.target)) {
+    profileDiv.classList.remove('active');
+    document.removeEventListener('click', closeProfile);
+  }
+}
+function makeProfileEditable(event){
+  event.preventDefault();
+  
+  if(profileIsNotEditable){
+    const nameField = document.getElementById('name');
+    const usernameField = document.getElementById('username');
+    
+    editProfileButton.innerText = "Update Profile";
+    nameField.readOnly = false;
+    nameField.classList.add('editable');
+    usernameField.readOnly = false;
+    usernameField.classList.add('editable');
+    profileIsNotEditable = false;
+  } else{
+    updateUserForm.action = '/user/update';
+    updateUserForm.submit();
+    profileIsNotEditable = true;
+  }
+}
+function confirmDelete(event) {
+  var isConfirmed = confirm("Are you sure you want to delete your account?");
+  if(!isConfirmed){
+    event.preventDefault();
+  }
 }

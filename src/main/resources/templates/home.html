@@ -10,10 +10,20 @@
 </head>
 
 <body>
-    <header>
+    <img id="profile-button" th:src="@{img/Profile.svg}" alt="">
+    <div class="profile">
+        <h1 id="close-profile-button"><p>Profile</p> <p>❮</p></h1>
+            <form id="update-form">
+                <input type="text" id="name" name="name" th:value="${name}" readonly/>
+                <input type="text" id="username" name="username" th:value="${username}" readonly/>
+                <button type="submit" id="edit-profile-button">Edit Profile</button>
+            </form>
         <form id="logout-form" th:action="@{/logout}" method="post">
-            <button id="logout-button" type="submit"><img th:src="@{img/sign-out-alt.svg}" alt=""></button>
+            <button id="logout-button" type="submit">Logout</button>
         </form>
+        <a id="delete-account-button" href="/user/delete">Delete Account</a>
+    </div>
+    <header>
         <div class="cash">
             <div>
                 <h3 th:text="${totalCashIn}">00</h3>
@@ -40,7 +50,11 @@
     </div>
     <main>
         <div class="list">
-            <a th:href="@{/transaction(id=${transaction.id}, name=${transaction.name}, amount=${transaction.amount}, description=${transaction.description}, type=${transaction.transactionType})}" th:each="transaction : ${transactions}"
+            <a th:href="@{/transaction(id=${transaction.id}, 
+                name=${transaction.name}, 
+                amount=${transaction.amount}, 
+                description=${transaction.description}, 
+                type=${transaction.transactionType})}" th:each="transaction : ${transactions}"
                 th:class="${transaction.transactionType == T(com.managers.expensetracker.model.TransactionType).CASH_IN} ? 'list-item cash-in' : 'list-item cash-out'">
                 <img th:src="@{'/img/' + ${transaction.name} + '.svg'}" alt="CategoryImage">
                 <div>
@@ -59,8 +73,14 @@
             <div class="analytics">
                 <div class="rating" th:text="${balancePercentage + '%'}">82%</div>
                 <div class="bar-chart">
-                    <div class="cash-out"><h6 th:text="${balancePercentage + '%'}">60%</h6><p>Spent</p></div>
-                    <div class="balance"><h6 th:text="${100 - balancePercentage + '%'}">40%</h6><p>Remaining</p></div>
+                    <div class="cash-out">
+                        <h6 th:text="${balancePercentage + '%'}">60%</h6>
+                        <p>Spent</p>
+                    </div>
+                    <div class="balance">
+                        <h6 th:text="${100 - balancePercentage + '%'}">40%</h6>
+                        <p>Remaining</p>
+                    </div>
                 </div>
             </div>
             <div class="total-stats">

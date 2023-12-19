@@ -5,7 +5,8 @@ import com.managers.expensetracker.model.requests.UserRequest;
 import com.managers.expensetracker.model.users.User;
 import com.managers.expensetracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.validation.annotation.Validated;
@@ -28,6 +29,23 @@ public class UserController {
         User user = userMapper.mapToEntity(userRequest);
         userService.saveUser(user);
         return "redirect:/login";
+    }
+    @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST}, value = "update")
+    public String updateUser(@ModelAttribute UserRequest userRequest){
+        User user = getCurrentUser();
+        userService.updateUser(userRequest,user);
+        return "redirect:/";
+    }
+    @RequestMapping(method = {RequestMethod.GET,RequestMethod.POST}, value = "delete")
+    public String deleteUser(){
+        User user = getCurrentUser();
+        userService.deleteUser(user);
+        return "redirect:/login";
+    }
+    public User getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        return userService.findByUsername(username);
     }
 
 }

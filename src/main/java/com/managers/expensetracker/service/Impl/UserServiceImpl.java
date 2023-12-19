@@ -1,5 +1,6 @@
 package com.managers.expensetracker.service.Impl;
 
+import com.managers.expensetracker.model.requests.UserRequest;
 import com.managers.expensetracker.model.users.User;
 import com.managers.expensetracker.repository.UserRepository;
 import com.managers.expensetracker.service.UserService;
@@ -33,5 +34,16 @@ public class UserServiceImpl implements UserService {
             return user;
         }
         return null;
+    }
+    @Override
+    public void updateUser(UserRequest userRequest, User user) {
+        user.setName(userRequest.getName());
+        user.setUsername(userRequest.getUsername());
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userRepository.delete(user);
     }
 }

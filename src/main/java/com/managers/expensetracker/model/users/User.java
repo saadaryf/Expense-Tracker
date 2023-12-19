@@ -18,7 +18,7 @@ public class User {
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Transaction> transactions;
 
 }

@@ -1,5 +1,6 @@
 package com.managers.expensetracker.service;
 
+import com.managers.expensetracker.model.requests.UserRequest;
 import com.managers.expensetracker.model.users.User;
 import jakarta.transaction.Transactional;
 
@@ -9,4 +10,10 @@ public interface UserService {
 
     @Transactional
     User findByUsername(String username);
+
+    @Transactional
+    void updateUser(UserRequest userRequest, User user);
+
+    @Transactional
+    void deleteUser(User user);
 }

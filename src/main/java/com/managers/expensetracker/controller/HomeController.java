@@ -7,6 +7,8 @@ import com.managers.expensetracker.model.responses.TransactionResponse;
 import com.managers.expensetracker.model.users.User;
 import com.managers.expensetracker.service.TransactionService;
 import com.managers.expensetracker.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,12 +39,18 @@ public class HomeController {
                 .map(transaction -> transactionMapper.mapToDTO(transaction))
                 .toList();
         model.addAttribute("transactions", transactionResponses);
+        UserProfile(model);
         Double totalCashIn = totalCashIn(transactions, model);
         Double totalCashOut = totalCashOut(transactions, model);
         totalBalance(totalCashIn,totalCashOut,model);
         numberOfCashInTransactions(transactions,model);
         numberOfCashOutTransactions(transactions,model);
         return "home";
+    }
+    public void UserProfile(Model model){
+        User user = getCurrentUser();
+        model.addAttribute("name", user.getName());
+        model.addAttribute("username", user.getUsername());
     }
     public User getCurrentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
