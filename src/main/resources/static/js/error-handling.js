@@ -25,13 +25,12 @@ $(document).ready(function () {
                 }
                 $('#error-popup').text(errorMessage).addClass("active");
             }
-        }); 
+        });
     });
-    
-});
 
+});
 // for user registration
-$('#signup-form').submit(function (event){
+$('#signup-form').submit(function (event) {
     event.preventDefault();
     $.ajax({
         url: this.action,

@@ -485,3 +485,18 @@ input[type="submit"] {
         width: 20px;
     }
 }
+
+#update-user-popup{
+    position: relative;
+    width: fit-content;
+    margin: 5px auto;
+    font-size: 0.6em;
+    letter-spacing: 2px;
+    display: none;
+    color: rgb(203, 0, 0);
+    padding: 10px;
+}
+#update-user-popup.active{
+    display: block;
+}
+

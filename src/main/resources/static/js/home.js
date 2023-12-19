@@ -12,11 +12,16 @@ const analyticsDiv = document.querySelector('.analytics');
 const cashInItems = document.querySelectorAll('.list-item.cash-in');
 const cashOutItems = document.querySelectorAll('.list-item.cash-out');
 const profileDiv = document.querySelector('.profile');
+const updateForm = document.getElementById('update-form');
 const openProfileButton = document.getElementById('profile-button');
 const editProfileButton = document.getElementById('edit-profile-button');
 const deleteAccountButton = document.getElementById('delete-account-button');
 const closeProfileButton = document.getElementById('close-profile-button');
-const updateUserForm = document.getElementById('update-form');
+
+let profileIsNotEditable = true;
+let listDispayed = true;
+let overviewDisplayed = false;
+
 
 deleteAccountButton.addEventListener('click', confirmDelete);
 openProfileButton.addEventListener('click', openProfile);
@@ -27,16 +32,16 @@ cashInButton.addEventListener('click', setCashInToLocalStorage);
 cashInButton.addEventListener('click', setTransactionTypeToSave);
 cashOutButton.addEventListener('click', setCashOutToLocalStorage);
 cashOutButton.addEventListener('click', setTransactionTypeToSave);
-closeProfileButton.addEventListener('click', function(){
+closeProfileButton.addEventListener('click', function () {
   profileDiv.classList.remove('active');
 })
-cashInItems.forEach((item)=>{
-    item.addEventListener('click',setCashInToLocalStorage);
-    item.addEventListener('click',setTransactionTypeToUpdate);
+cashInItems.forEach((item) => {
+  item.addEventListener('click', setCashInToLocalStorage);
+  item.addEventListener('click', setTransactionTypeToUpdate);
 })
-cashOutItems.forEach((item)=>{
-  item.addEventListener('click',setCashOutToLocalStorage);
-  item.addEventListener('click',setTransactionTypeToUpdate);
+cashOutItems.forEach((item) => {
+  item.addEventListener('click', setCashOutToLocalStorage);
+  item.addEventListener('click', setTransactionTypeToUpdate);
 })
 
 document.addEventListener('DOMContentLoaded', setRating);
@@ -46,9 +51,6 @@ if (isInViewport(analyticsDiv) && window.innerWidth <= 767) {
   analyticsDiv.classList.add("slide");
 }
 
-let listDispayed = true;
-let overviewDisplayed = false;
-let profileIsNotEditable = true;
 
 function showList() {
   if (overviewDisplayed) {
@@ -105,15 +107,15 @@ function calculateChartBarsHeight() {
   chartBars.forEach((bar) => {
     const barHeight = parseFloat(bar.querySelector('h6').innerText);
     const barName = bar.querySelector('p').innerText;
-    if(barName == 'Remaining' && barHeight <= 35){
+    if (barName == 'Remaining' && barHeight <= 35) {
       bar.style.backgroundColor = 'orange';
     }
-    if(barName == 'Spent' && barHeight >= 87){
+    if (barName == 'Spent' && barHeight >= 87) {
       bar.style.backgroundColor = 'red';
     }
     if (barHeight <= 12) {
       bar.style.display = 'none';
-    }else{
+    } else {
       const barTop = 100 - barHeight;
       bar.style.display = 'flex';
       bar.style.height = `${barHeight}%`;
@@ -125,17 +127,17 @@ function calculateChartBarsHeight() {
 function isInViewport(element) {
   const rect = element.getBoundingClientRect();
   return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
-function setTransactionTypeToSave(){
+function setTransactionTypeToSave() {
   const transactionType = "save";
   localStorage.setItem('transactionType', transactionType);
 }
-function setTransactionTypeToUpdate(){
+function setTransactionTypeToUpdate() {
   const transactionType = "update";
   localStorage.setItem('transactionType', transactionType);
 }
@@ -151,28 +153,67 @@ function closeProfile(event) {
     document.removeEventListener('click', closeProfile);
   }
 }
-function makeProfileEditable(event){
+function makeProfileEditable(event) {
   event.preventDefault();
-  
-  if(profileIsNotEditable){
-    const nameField = document.getElementById('name');
-    const usernameField = document.getElementById('username');
-    
+  const nameField = document.getElementById('name');
+  const usernameField = document.getElementById('username');
+
+  if (profileIsNotEditable) {
     editProfileButton.innerText = "Update Profile";
     nameField.readOnly = false;
     nameField.classList.add('editable');
     usernameField.readOnly = false;
     usernameField.classList.add('editable');
     profileIsNotEditable = false;
-  } else{
-    updateUserForm.action = '/user/update';
-    updateUserForm.submit();
-    profileIsNotEditable = true;
+  } else {
+    $.ajax({
+      url: '/user/update',
+      method: 'POST',
+      data: $('#update-form').serialize(),
+      success: function (data) {
+        $('#update-user-popup').removeClass("active");
+        editProfileButton.innerText = "Edit Profile";
+        nameField.readOnly = true;
+        nameField.classList.remove('editable');
+        usernameField.readOnly = true;
+        usernameField.classList.remove('editable');
+        profileIsNotEditable = true;
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        var errorMessage = "Error fetching Data!";
+
+        if (textStatus === 'error' && jqXHR.status === 500) {
+          var counter = 5;
+          var intervalId = setInterval(function () {
+            $('#update-user-popup').text('After changing username Login again in ' + counter + ' seconds...').addClass("active");
+            counter--;
+            if (counter < 0) {
+              $('#logout-form').submit();
+              clearInterval(intervalId);
+            }
+          }, 1000);
+        } else {
+          try {
+            var errorResponse = JSON.parse(jqXHR.responseText);
+            if (errorResponse.details) {
+              errorMessage = errorResponse.details;
+            }
+          } catch (parseError) {
+            console.log('Error parsing JSON response:', parseError);
+          }
+          $('#update-user-popup').text(errorMessage).addClass("active");
+        }
+      }
+    });
+    event.preventDefault();
   }
 }
+
+
+
 function confirmDelete(event) {
   var isConfirmed = confirm("Are you sure you want to delete your account?");
-  if(!isConfirmed){
+  if (!isConfirmed) {
     event.preventDefault();
   }
 }
