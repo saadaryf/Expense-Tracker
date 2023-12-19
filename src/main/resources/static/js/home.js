@@ -75,13 +75,28 @@ function showOverview() {
   }
 }
 function updateDate() {
-  const dateField = document.getElementById("date-field");
+  const previousDate = document.getElementById("start-date");
+  const todayDate = document.getElementById("end-date");
   const currentDate = new Date();
-  const day = currentDate.toLocaleDateString('en-US', { day: 'numeric' });
-  const month = currentDate.toLocaleDateString('en-US', { month: 'short' });
 
-  dateField.textContent = `${day} ${month}`;
+  // Date of the same day in the next month
+  const prevMonthDate = new Date(currentDate);
+  prevMonthDate.setMonth(currentDate.getMonth() - 1);
+  const prevMonthDay = prevMonthDate.toLocaleDateString('en-US', { day: '2-digit' });
+  const prevMonthMonth = prevMonthDate.toLocaleDateString('en-US', { month: '2-digit' });
+  const prevMonthYear = prevMonthDate.toLocaleDateString('en-US', { year: 'numeric' });
+  const prevMonthDateString = `${prevMonthYear}-${prevMonthMonth}-${prevMonthDay}`;
+
+  // Current date
+  const currentDay = currentDate.toLocaleDateString('en-US', { day: '2-digit' });
+  const currentMonth = currentDate.toLocaleDateString('en-US', { month: '2-digit' });
+  const currentYear = currentDate.toLocaleDateString('en-US', { year: 'numeric' });
+  const currentDateString = `${currentYear}-${currentMonth}-${currentDay}`;
+
+  previousDate.value = `${prevMonthDateString}`;
+  todayDate.value = `${currentDateString}`;
 }
+
 function setRating() {
   const ratingContent = rating.innerHTML;
   const ratingScore = parseInt(ratingContent, 10);
@@ -183,9 +198,10 @@ function makeProfileEditable(event) {
         var errorMessage = "Error fetching Data!";
 
         if (textStatus === 'error' && jqXHR.status === 500) {
-          var counter = 5;
+          $('body').addClass('unclickable');
+          var counter = 3;
           var intervalId = setInterval(function () {
-            $('#update-user-popup').text('After changing username Login again in ' + counter + ' seconds...').addClass("active");
+            $('#update-user-popup').text('After updating username, Login again in ' + counter + ' seconds..').addClass("active");
             counter--;
             if (counter < 0) {
               $('#logout-form').submit();
@@ -208,12 +224,11 @@ function makeProfileEditable(event) {
     event.preventDefault();
   }
 }
-
-
-
 function confirmDelete(event) {
   var isConfirmed = confirm("Are you sure you want to delete your account?");
   if (!isConfirmed) {
     event.preventDefault();
   }
 }
+
+

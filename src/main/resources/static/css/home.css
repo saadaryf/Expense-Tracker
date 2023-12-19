@@ -20,7 +20,9 @@ body {
     font-size: 25px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
+.unclickable {
+    pointer-events: none;
+}
 @media only screen and (max-width: 950px) and (orientation: landscape) {
     body {
         height: auto;
@@ -484,6 +486,9 @@ input[type="submit"] {
         margin: 5px;
         width: 20px;
     }
+    .date input {
+        width: 40%;
+    }
 }
 
 #update-user-popup{
@@ -499,4 +504,24 @@ input[type="submit"] {
 #update-user-popup.active{
     display: block;
 }
+.date input {
+    padding: 5px;
+    min-width: min-content;
+    margin: 5px;
+    font-size: 1em;
+    text-align: center;
+}
 
+#date-form{
+    flex-direction: row;
+    align-items: center;
+}
+#date-form button{
+    height: 33px;
+    width: 80px;
+    margin: 0 5px;
+    text-transform: uppercase;
+    background: #08316f;
+    color: white;
+    font-size: 0.6em;
+}

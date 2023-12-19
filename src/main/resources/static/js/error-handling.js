@@ -27,7 +27,6 @@ $(document).ready(function () {
             }
         });
     });
-
 });
 // for user registration
 $('#signup-form').submit(function (event) {
