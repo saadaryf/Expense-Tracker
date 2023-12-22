@@ -23,4 +23,6 @@ public class TransactionRequest {
 
     @Size(max = 150,message = "Description size cant exceed 150 words!")
     private String description;
+
+    private boolean autoDescription;
 }

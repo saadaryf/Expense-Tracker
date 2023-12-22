@@ -7,10 +7,9 @@
     <title>Add Transaction</title>
     <link rel="stylesheet" th:href="@{/css/home.css}">
     <link rel="stylesheet" th:href="@{/css/add-transaction.css}">
-    <!-- <link rel="stylesheet" href="../static/css/add-transaction.css">
-    <link rel="stylesheet" href="../static/css/home.css"> -->
+    <link rel="stylesheet" href="../static/css/add-transaction.css">
+    <link rel="stylesheet" href="../static/css/home.css">
 </head>
-
 <body>
     <a id="delete-btn" href="/transaction/delete"><img th:src="@{/img/Delete.svg}" alt=""></a>
     <p id="error-popup">Error here</p>
@@ -23,9 +22,11 @@
         <input id="amount" type="number" name="amount" placeholder="Amount">
         <input id="date" type="text" name="date" placeholder="Date: dd-mm-yyyy">
         <input id="description" type="text" name="description" placeholder="Description: (optional)">
+        <label id="checkbox">
+            <input type="checkbox" name="autoDescription"> Generate Auto Description
+        </label>        
         <input type="submit" id="save-btn" value="Save Transaction">
     </form>
-
     <div class="categories cash-in hidden">
         <a id="hide-categories-button">︾</a>
         <button th:each="category : ${categories}"
@@ -46,7 +47,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script th:src="@{/js/add-transaction.js}"></script>
     <script th:src="@{/js/error-handling.js}"></script>
-    <!-- <script src="../static/js/add-transaction.js"></script> -->
+    <script src="../static/js/add-transaction.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,32 @@
+id,category,type,description
+1,Salary,CASH_IN,Received salary deposit for the month of December.
+2,Business,CASH_IN,Earned income from business activities
+3,Savings,CASH_IN,"Contributed to savings fund for future goals	"
+4,Rent,CASH_IN,Paid monthly rent for the apartment
+5,Loan,CASH_IN,Made a payment towards a loan
+6,Other,CASH_IN,Received additional income from various sources.
+7,Groceries,CASH_OUT,Bought groceries for the week
+8,Fuel,CASH_OUT,Filled up the vehicle with fuel.
+9,Food,CASH_OUT,Dined out or ordered food for a meal.
+10,Vehicle,CASH_OUT,Invested in vehicle maintenance and repairs
+11,Taxi,CASH_OUT,Used a taxi for transportation.
+12,Clothes,CASH_OUT,Purchased new clothes or accessories
+13,Shopping,CASH_OUT,Indulged in a shopping spree for various items.
+14,Electricity,CASH_OUT,Paid the monthly electricity bill
+15,Gas,CASH_OUT,Covered expenses for gas supply.
+16,Water,CASH_OUT,Settled the monthly water bill
+17,Internet,CASH_OUT,Renewed the internet subscription for the month
+18,Rent,CASH_OUT,Paid monthly rent for the living space
+19,House,CASH_OUT,Invested in the maintenance of the house
+20,Gym,CASH_OUT,Paid the monthly gym membership fee
+21,Beauty,CASH_OUT,"Treated myself to beauty and grooming services	"
+22,Vacation,CASH_OUT,Started saving for an upcoming vacation.
+23,Health,CASH_OUT,Covered health-related expenses
+24,Education,CASH_OUT,Invested in education-related expenses
+25,Loan,CASH_OUT,"Made a payment towards a loan	"
+26,Pets,CASH_OUT,Covered expenses for pet care
+27,Insurance,CASH_OUT,"Paid the premium for insurance coverage	"
+28,Gifts,CASH_OUT,Bought gifts for special occasions
+29,Donations,CASH_OUT,Contributed to charitable donations
+30,Tax,CASH_OUT,Paid taxes for the fiscal period
+31,Other,CASH_OUT,Covered miscellaneous expenses

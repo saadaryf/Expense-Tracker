@@ -33,7 +33,7 @@ input{
     color: black;
 }
 #save-btn{
-    margin: 30px auto;
+    margin: 10px auto 10px auto;
     text-decoration: none;
     background: green;
     color: white;
@@ -152,3 +152,19 @@ form input:nth-child(2){
 form input:last-child{
     cursor: pointer;
 }
+#checkbox {
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;  
+    justify-content: c;
+}
+#checkbox input {
+    margin-right: 5px;
+    width: fit-content;
+    transform: scale(0.8);
+}
+
