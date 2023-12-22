@@ -22,6 +22,8 @@ Secured user authentication with encrypted passwords.
 A visual dashboard presenting a summary of your financial activities.
 - **Validations**
 Will show errors if the entered data is not valid.
+- **Auto Descriptions**
+Can generate descriptions automatically from a dataset.
 
 ## Technologies Used
 - **Spring Boot**
