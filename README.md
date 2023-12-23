@@ -1,6 +1,13 @@
 ﻿# Expense-Tracker
 The Expense Tracker App is a Java-based web application built using the Spring Boot framework. This application provides users with a simple and intuitive interface to manage their expenses, track spending patterns, and gain insights into their financial activities.
 
+![GitHub top language](https://img.shields.io/github/languages/top/saadaryf/Expense-Tracker?color=f5f5dc) 
+![GitHub language count](https://img.shields.io/github/languages/count/saadaryf/Expense-Tracker?color=f5f5dc) 
+![GitHub last commit](https://img.shields.io/github/last-commit/saadaryf/Expense-Tracker?color=f5f5dc) 
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/saadaryf/Expense-Tracker?color=f5f5dc)
+![GitHub repo size](https://img.shields.io/github/repo-size/saadaryf/Expense-Tracker?color=f5f5dc)
+![GitHub watchers](https://img.shields.io/github/watchers/saadaryf/Expense-Tracker?style=social)
+
 ## Table of Contents
 - [Key Features](#key-features)
 - [Technologies Used](#technologies-used)
