@@ -41,13 +41,15 @@ Can generate descriptions automatically from a dataset.
 - **Docker**
 
 ## Requirements
-- **Docker**
+- **Docker:**
 Ensure that Docker is installed and running on your machine.
-
+- **Database:**
+Create MySQL database named 'expenses'.
+- **
 ## Installation 
 - **Clone project**
 ```
-https://github.com/saadaryf/Expense-Tracker.git
+git clone https://github.com/saadaryf/Expense-Tracker.git
 ```
 - **Build .jar file**
 ```
