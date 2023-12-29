@@ -45,7 +45,7 @@ Can generate descriptions automatically from a dataset.
 Ensure that Docker is installed and running on your machine.
 - **Database:**
 Create MySQL database named 'expenses'.
-- **
+
 ## Installation 
 - **Clone project**
 ```
